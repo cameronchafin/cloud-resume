@@ -417,8 +417,25 @@
             </ul>
           </div>
         </article>
+
+        <!-- Visitor Counter -->
+        <p id="visitor-count" class="text-center">Visitor count: <span>Loading...</span></p>
       </div>
     </div>
+
+    <!-- Visitor Counter Script -->
+    <script>
+      fetch('https://4ezin6iglc.execute-api.us-east-2.amazonaws.com/VisitorCounter')
+        .then(response => response.json())
+        .then(data => {
+          // Update the visitor count in the HTML
+          document.getElementById('visitor-count').innerText = `Visitor count: ${data.visitor_count}`;
+        })
+        .catch(error => {
+          console.error('Error fetching visitor count:', error);
+          document.getElementById('visitor-count').innerText = 'Visitor count: Error';
+        });
+    </script>
   </body>
 </html>
 
